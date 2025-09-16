@@ -1,0 +1,22 @@
+{
+    "indexes": [
+      {
+        "collectionGroup": "purchase_records",
+        "queryScope": "COLLECTION",
+        "fields": [
+          { "fieldPath": "client_id", "order": "ASCENDING" },
+          { "fieldPath": "order_date", "order": "ASCENDING" }
+        ]
+      },
+      {
+        "collectionGroup": "purchase_records",
+        "queryScope": "COLLECTION",
+        "fields": [
+          { "fieldPath": "product_id", "order": "ASCENDING" },
+          { "fieldPath": "order_date", "order": "DESCENDING" }
+        ]
+      }
+    ],
+    "fieldOverrides": []
+  }
+  
