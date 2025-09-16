@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "後台 | Admin" }}</title>
+  <!-- 方便起見，直接用 CDN： -->
+  <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet">
+  <link href="/admin-static/admin.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="container">
+    <ul>
+      <li><strong>Admin</strong></li>
+    </ul>
+    <ul>
+      <li><a href="/admin">Dashboard</a></li>
+      <li><a href="/admin/clients">會員</a></li>
+      <li><a href="/admin/products">產品</a></li>
+      <li><a href="/admin/records">購買紀錄</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

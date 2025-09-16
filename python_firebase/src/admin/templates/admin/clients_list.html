@@ -1,0 +1,30 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<h2>會員清單</h2>
+
+<table>
+  <thead>
+    <tr><th>ID</th><th>姓名</th><th>性別</th><th>年齡</th><th>帳號</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for c in items %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td><a href="/admin/clients/{{ c.id }}">{{ c.name }}</a></td>
+      <td>{{ c.gender }}</td>
+      <td>{{ c.age }}</td>
+      <td>{{ c.username }}</td>
+      <td>
+        <form method="post" action="/admin/clients/{{ c.id }}/delete" onsubmit="return confirm('刪除會員 {{ c.name }}?')">
+          <button class="secondary outline">刪除</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% if next_cursor %}
+  <a class="secondary" href="?limit={{ limit }}&cursor_after={{ next_cursor }}">下一頁 →</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<h2>購買紀錄</h2>
+
+<form method="get" class="grid">
+  <input type="number" name="client_id" placeholder="依 client_id 篩選" value="{{ client_id or '' }}">
+  <input type="hidden" name="limit" value="{{ limit }}">
+  <button>篩選</button>
+</form>
+
+<table>
+  <thead>
+    <tr><th>ID</th><th>Client</th><th>Product</th><th>日期</th><th>數量</th><th>金額</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for r in items %}
+    <tr>
+      <td><a href="/admin/records/{{ r.id }}">{{ r.id }}</a></td>
+      <td>{{ r.client_id }}</td>
+      <td>{{ r.product_id }}</td>
+      <td>{{ r.order_date }}</td>
+      <td>{{ r.quantity }}</td>
+      <td>{{ r.amount }}</td>
+      <td>
+        <form method="post" action="/admin/records/{{ r.id }}/delete" onsubmit="return confirm('刪除紀錄 #{{ r.id }}?')">
+          <button class="secondary outline">刪除</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% if next_cursor %}
+  <a class="secondary" href="?limit={{ limit }}{% if client_id %}&client_id={{ client_id }}{% endif %}&cursor_after={{ next_cursor }}">下一頁 →</a>
+{% endif %}
+{% endblock %}

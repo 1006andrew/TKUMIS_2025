@@ -1,0 +1,6 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<h2>{{ title }}</h2>
+<pre>{{ doc | tojson(indent=2) }}</pre>
+<a href="/admin">← 回到後台</a>
+{% endblock %}

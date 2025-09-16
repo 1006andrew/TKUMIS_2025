@@ -1,0 +1,30 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<h2>產品清單</h2>
+
+<table>
+  <thead>
+    <tr><th>ID</th><th>訂單編號</th><th>產品名稱</th><th>最低價</th><th>最高價</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for p in items %}
+    <tr>
+      <td>{{ p.id }}</td>
+      <td>{{ p.order_no }}</td>
+      <td><a href="/admin/products/{{ p.id }}">{{ p.product_name }}</a></td>
+      <td>{{ p.price_min }}</td>
+      <td>{{ p.price_max }}</td>
+      <td>
+        <form method="post" action="/admin/products/{{ p.id }}/delete" onsubmit="return confirm('刪除產品 {{ p.product_name }}?')">
+          <button class="secondary outline">刪除</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% if next_cursor %}
+  <a class="secondary" href="?limit={{ limit }}&cursor_after={{ next_cursor }}">下一頁 →</a>
+{% endif %}
+{% endblock %}
